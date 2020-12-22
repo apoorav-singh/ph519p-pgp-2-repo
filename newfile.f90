@@ -39,21 +39,23 @@ program wave_function
         
         x(i) = x(i-1) + h
 
-        !zeta = ((m*omega)/hbar)**(1/2)*x(i-1)
-        !f(i-1) = -2*(epsilon - zeta**2/2)
-        !y(i-1) = 1 - (h)**2/(12*f(i-1))
+        zeta = ((m_e*omega)/hbar)**(1/2)*x(i-1)
+        f(i-1) = -2*(epsilon - zeta**2/2)
+        y(i-1) = 1 - (h)**2/(12*f(i-1))
 
-        !zeta = ((m*omega)/hbar)**(1/2)*x(i)
-        !f(i) = -2*(epsilon - zeta**2/2)
-        !y(i) = 1 - (h)**2/(12*f(i))
+        zeta = ((m_e*omega)/hbar)**(1/2)*x(i)
+        f(i) = -2*(epsilon - zeta**2/2)
+        y(i) = 1 - (h)**2/(12*f(i))
 
-        !zeta = ((m*omega)/hbar)**(1/2)*x(i+1)
-        !f(i+1) = -2*(epsilon - zeta**2/2)
-        !y(i+1) = 1 - (h)**2/(12*f(i+1))
+        zeta = ((m_e*omega)/hbar)**(1/2)*x(i+1)
+        f(i+1) = -2*(epsilon - zeta**2/2)
+        y(i+1) = 1 - (h)**2/(12*f(i+1))
 
-        !psi(i+1) = (psi(i)(12-10*y(i)) - y(i-1)psi(i-1))/y(i+1)
+        psi(i+1) = (psi(i)*(12-10*y(i)) - y(i-1)*psi(i-1))/y(i+1)
 
-        print *, x 
+        !print *, x(i-1) 
+        !print *, "------------------------------"
+        print *, psi(i-1)
     end do 
 
 
