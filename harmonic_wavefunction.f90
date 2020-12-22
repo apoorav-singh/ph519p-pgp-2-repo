@@ -13,9 +13,8 @@ program wave_function
     x_end = 10
     grid = 100
     h = x_end/grid
-    
 
-    real, dimension(1:2*grid) :: x, y, f, psi
+    real, dimension(1:grid) :: x, y, f, psi
 
     n = 0 ! Ground State
 
@@ -33,8 +32,8 @@ program wave_function
     psi_0 = 0
     psi_1 = 0.001
     
-    psi(1) = psi_0
-    psi(2) = psi_1
+    !psi(1) = psi_0
+    !psi(2) = psi_1
 
     x(1) = 0.0
 
