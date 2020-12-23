@@ -4,9 +4,9 @@ program wave_function
     
     ! Calclation is done in Atomic units
 
-    real(kind=8):: E, hbar, omega, m_e, epsilon, zeta, k, h, psi_0, psi_1, x_end
-    integer :: n, grid, i 
-    real, ALLOCATABLE:: x(:) , y(:), f(:) , psi(:)
+    real(kind=8):: E, hbar, omega, m_e, epsilon, k, h, psi_0, psi_1, x_end
+    integer :: n, grid, i, j 
+    real, ALLOCATABLE:: x(:) , y(:), f(:) , psi(:), zeta(:)
     grid=100
     x_end = 10
     h = x_end/grid
@@ -24,7 +24,7 @@ program wave_function
 
     ! Transformation 
     epsilon = E/(hbar*omega) 
-    ALLOCATE( x(1:grid) , y(1:grid), f(1:grid) , psi(1:grid))
+    ALLOCATE( x(1:grid) , y(1:grid), f(1:grid) , psi(1:grid), zeta(1:grid))
 
     psi_0 = 0
     psi_1 = 0.001
@@ -35,43 +35,22 @@ program wave_function
     x(1) = 0
 
     do i = 1, grid
-        
-        if (i<=1) then
 
             x(i+1) = x(i) + h
-            x(i+2) = x(i+1) + h
 
-            zeta = ((m_e*omega)/hbar)**(1/2)*x(i)
-            f(i) = -2*(epsilon - zeta**2/2)
+            zeta(i) = ((m_e*omega)/hbar)**(1/2)*x(i)
+            f(i) = -2*(epsilon - zeta(i)**2/2)
             y(i) = 1 - (h)**2/(12*f(i))
 
-            zeta = ((m_e*omega)/hbar)**(1/2)*x(i+1)
-            f(i+1) = -2*(epsilon - zeta**2/2)
-            y(i+1) = 1 - (h)**2/(12*f(i+1))
+    end do 
 
-            zeta = ((m_e*omega)/hbar)**(1/2)*x(i+2)
-            f(i+2) = -2*(epsilon - zeta**2/2)
-            y(i+2) = 1 - (h)**2/(12*f(i+2))
-
-            psi(i+1) = (psi(i+1)*(12-10*y(i+1)) - y(i)*psi(i))/y(i+2)
-
-        else
-
-            x(i+2) = x(i+1) + h
-
-            zeta = ((m_e*omega)/hbar)**(1/2)*x(i+2)
-            f(i+2) = -2*(epsilon - zeta**2/2)
-            y(i+2) = 1 - (h)**2/(12*f(i+2))
-
-            psi(i+1) = (psi(i+1)*(12-10*y(i+1)) - y(i)*psi(i))/y(i+2)
-
-        endif 
-
-        print '(3e16.8, 8X, 3e20.20)',x(i), psi(i)
+    do j = 1, grid
+        
+        psi(j+2) = (psi(j+1)*(12-10*y(j+1)) - y(j)*psi(j))/y(j+2)
+        print '(3e16.8, 8X, 3e16.16)',x(j), psi(j)
         print *, " "
-    
-    enddo 
 
+    end do
 
 
 
