@@ -67,7 +67,7 @@ program wave_function
 
         endif 
 
-        print '(3e16.8, 8X, 3e16.16)',x(i), psi(i)
+        print '(3e16.8, 8X, 3e20.20)',x(i), psi(i)
         print *, " "
     
     enddo 
