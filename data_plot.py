@@ -11,13 +11,14 @@ df_txt = pd.read_csv('output.txt',delimiter='\s+')
 # Printing the data file out to check if data is correctly loaded or not
 # This can be later removed
 # print(df_txt)
+grid = 100000
 
-f_pot = np.array(df_txt.iloc[0:98,1])
-x = np.array(df_txt.iloc[0:98,0])
+f_pot = np.array(df_txt.iloc[0:grid,1])
+x = np.array(df_txt.iloc[0:grid,0])
 
 plt.figure(figsize=(8,5), dpi=100)
 plt.plot(x,f_pot)
 plt.xlabel('x-position')
 plt.ylabel('Wave Function')
 plt.show()
-plt.savefig('psi.png', dpi=300)
+plt.savefig('psi_2.png', dpi=300)
