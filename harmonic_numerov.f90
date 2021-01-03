@@ -85,6 +85,7 @@ search_loop: do
         icl=-1
         do i=1,mesh
            f(i)=ddx12*2.0_dp*(vpot(i)-e)
+           ! print  *, f(i)
            ! beware: if f(i) is exactly zero the change of sign is not observed
            ! the following line is a trick to prevent missing a change of sign 
            ! in this unlikely but not impossible case:

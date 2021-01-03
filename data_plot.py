@@ -11,14 +11,19 @@ df_txt = pd.read_csv('output.txt',delimiter='\s+')
 # Printing the data file out to check if data is correctly loaded or not
 # This can be later removed
 # print(df_txt)
-grid = 100000
+grid = 1000000
 
-f_pot = np.array(df_txt.iloc[0:grid,1])
+psi = np.array(df_txt.iloc[0:grid,1])
 x = np.array(df_txt.iloc[0:grid,0])
 
+#psi = np.array(df_txt.iloc[42:162,1])
+#x = np.array(df_txt.iloc[42:162,0])
+
 plt.figure(figsize=(8,5), dpi=100)
-plt.plot(x,f_pot)
+plt.plot(x,psi)
 plt.xlabel('x-position')
 plt.ylabel('Wave Function')
+plt.grid()
+plt.title("Tenth Excited State for Harmonic Oscillator")
 plt.show()
-plt.savefig('psi_2.png', dpi=300)
+plt.savefig('tenth_excited_State.png', dpi=300)
