@@ -13,17 +13,17 @@ df_txt = pd.read_csv('output.txt',delimiter='\s+')
 # print(df_txt)
 grid = 1000000
 
-psi = np.array(df_txt.iloc[0:grid,1])
-x = np.array(df_txt.iloc[0:grid,0])
+#psi = np.array(df_txt.iloc[0:grid,1])
+#x = np.array(df_txt.iloc[0:grid,0])
 
-#psi = np.array(df_txt.iloc[42:162,1])
-#x = np.array(df_txt.iloc[42:162,0])
+psi = np.array(df_txt.iloc[42:162,1])
+x = np.array(df_txt.iloc[42:162,0])
 
 plt.figure(figsize=(8,5), dpi=100)
 plt.plot(x,psi)
 plt.xlabel('x-position')
 plt.ylabel('Wave Function')
 plt.grid()
-plt.title("Tenth Excited State for Harmonic Oscillator")
+plt.title("Second Excited State for Harmonic Oscillator")
 plt.show()
-plt.savefig('tenth_excited_State.png', dpi=300)
+plt.savefig('second_excited_State.png', dpi=300)
