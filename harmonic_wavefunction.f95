@@ -16,7 +16,7 @@ program wave_function
 
    
 
-    n = 10 ! Ground State
+    n = 1 ! Ground State
     hbar  = 1.0_dp
     m_e = 1.0_dp
     k = 2.0_dp ! Here Energy is of the ground state is set to be 1 a.u.
@@ -46,11 +46,10 @@ program wave_function
 
    
     psi(0) = psi_0
-    psi(1) = (12.0_dp-10.0_dp*y(0))*psi(0)/(2.0_dp*y(1)) 
-    norm = psi(0) 
+    psi(1) = (12.0_dp-10.0_dp*y(0))*psi(0)/(2.0_dp*y(1))  
+
     do j1 = 1, (grid/2)
         psi(j1+1) = (psi(j1)*(12.0_dp-(10.0_dp*y(j1)))-y(j1-1)*psi(j1-1))/y(j1+1)
-        norm = norm + psi(j1)
     end do
 
     i1 = 1
@@ -61,9 +60,11 @@ program wave_function
 
     end do
 
+    norm = maxval(psi)
+
     do j2 = 0, grid
 
-        a(j2) = psi(j2)/sqrt(2*norm)
+        a(j2) = psi(j2)/norm
 
     end do
 
